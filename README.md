@@ -24,15 +24,12 @@ University of Bristol Cows2021 Dataset (開放資料集)
 
 https://data.bris.ac.uk/data/dataset/4vnrca7qw1642qlwxjadp87h7
 
+---
+### (4)程式碼
 
-
-
-### 數據準備
-
-在文件夾`data`下放數據，分成三個文件夾: `train/test/val`，對應 訓練/測試/驗證 數據文件夾；
+在文件夾`timm`下的`cowimg`裡放數據集，分成二個文件夾: `train/validate`，對應 訓練/驗證 數據文件夾；
 每個子文件夾下，依據分類類別每個類別建立一個對應的文件夾，放置該類別的圖片。
-
-數據準備完畢後，使用`utils/check_images.py`腳本，檢查圖像數據的有效性，防止在訓練過程中遇到無效圖片中止訓練。
+另外test的部分在文件夾`timm`下的`testdata`裡放要當測試集的數據圖片。
 
 最終大概結構為：
 ```
@@ -45,11 +42,11 @@ https://data.bris.ac.uk/data/dataset/4vnrca7qw1642qlwxjadp87h7
     - class_1
       - ...
     - ..
-  - test
-    - ...
   - val
-    - ...
-- dataloader
+    - class_0
+      - 0.jpg
+      - 1.jpg
+      - ...
 - ...
 ```
 
