@@ -1,6 +1,5 @@
-# AICUP-plant (TEAM_240)
-組員: louis52099, julian135707, wiwi61666166  
-Only for AI CUP group and private notes
+# NCHU_AI-Project_Sub_project-1
+
 
 ---
 ## 農地作物現況調查影像辨識競賽 - 春季賽：AI作物影像判釋
