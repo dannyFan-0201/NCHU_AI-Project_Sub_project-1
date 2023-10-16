@@ -6,9 +6,8 @@
 實驗以少量的資料就獲得了不錯的結果但還是有許多可以改進的部分，若可獲得更多真實的圖片且保持各類別的平衡便可直接的使用不需強化資料，也不會有特定類別的精確度下降的問題，模型選擇上也可
 以在不流失過多精確度的狀況下選擇較輕量化的模型，使得實際應用時減少延遲。
 
-在第2年的計畫中，關於模型的選擇上我們主要區分為2種類別，分別是傳統的CNN的架構和CNN + Transformer這2種，而
-這2種的模型架構一樣都有使用到Transfer learning的部分，採用的預訓練模型都是ImageNet dataset，此外有使用到Transformer的模型一般來說都較為複雜同時訓練時間會長很多，相較之下傳統
-CNN模型雖然不像Transformer那麼複雜，但在特定情況下可能會有不錯的性能表現，同時也能節省大量的訓練時間。另一方面，將CNN與Transformer結合的模型也是我們的研究重點。儘管這種組合可能
+在第2年的計畫中，關於模型的選擇上我們主要區分為2種類別，分別是傳統的CNN的架構和CNN + Transformer這2種，而這2種的模型架構一樣都有使用到Transfer learning的部分，採用的預訓練模型都是ImageNet dataset，此外有使用到Transformer的模型
+一般來說都較為複雜同時訓練時間會長很多，相較之下傳統CNN模型雖然不像Transformer那麼複雜，但在特定情況下可能會有不錯的性能表現，同時也能節省大量的訓練時間。另一方面，將CNN與Transformer結合的模型也是我們的研究重點。儘管這種組合可能
 需要更長的訓練時間，但藉由複雜的模型更能夠捕捉到圖像中複雜的關係，以達到進一步提高分類的精確度。第2年的計劃將是建立在第一年成果的基礎上，通過對多種模型架構的訓練研究和在不同資料集
 的選擇上，來考慮整體模型的精確度、速度和實際上應用需求的評估。
 
@@ -24,10 +23,10 @@ University of Bristol Cows2021 Dataset (開放資料集)
 https://data.bris.ac.uk/data/dataset/4vnrca7qw1642qlwxjadp87h7
 
 ---
-### (4)程式碼
+## (4)程式碼
 
-在文件夾`timm`下的`cowimg`裡放數據集，分成二個文件夾: `train/validate`，對應 訓練/驗證 數據文件夾；
-每個子文件夾下，依據分類類別每個類別建立一個對應的文件夾，放置該類別的圖片。
+在文件夾`timm`下的`cowimg`裡放數據集，分成二個文件夾: `train/validate`，對應 訓練/驗證 數據文件夾,每個子文件夾下再依據分類的類別，每個類別建立一個對應的文件夾放置該類別的圖片。
+
 另外test的部分在文件夾`timm`下的`inference_test`裡放要當測試集的數據圖片。
 
 最終大概結構為：
@@ -73,20 +72,18 @@ https://data.bris.ac.uk/data/dataset/4vnrca7qw1642qlwxjadp87h7
 ---
 ## Train
 1. 資料夾 `pytorch-image-models-main` 下的 `train.py`檔案。
-2. `train.py` 由上述引導設定 (重點data、image-size、num_classes、train、epochs、batch_size...)
-3. 運行`train.py` 開始訓練
+2. `train.py` 由上述引導設定。(重點data、image-size、num_classes、train、epochs、batch_size...)
+3. 運行`train.py` 開始訓練。
+4. 這邊會將運行結果的權重檔案存放在文件夾`output`下的`train`。
 
 ## Test  
 
 1. 運行`validate.py`，這裡的validate程式碼就是我們test的部分。
-2. 
-3.  
+2. 這邊會將運行結果存放在文件夾`output`下的`inference`。
 
 
 ## Ensanble 
-1. 將三者模型測試出的結果 `.log` 檔運行 `write_csv.py` 將log檔轉換成讀取用的csv  
-    - 將各模型分兩類，圖片分類檔 & 純置信度檔 (共六個csv)
-2. 運行 `read_csv.py` 讀取csv檔生成最後結果
+
 
 ---
 ## Result (ConfusionMatrix)  
