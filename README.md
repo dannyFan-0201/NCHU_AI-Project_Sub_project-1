@@ -18,7 +18,6 @@ CNN模型雖然不像Transformer那麼複雜，但在特定情況下可能會有
 為主，模型架構方面除了先前的EfficientNet 外還加上了Resnet50和R50-ViT-B_16，並使用預訓練模型做遷移式學習以節省整體訓練時間。
 
 ---
-
 ## (3)資料集鏈結
 University of Bristol Cows2021 Dataset (開放資料集)
 
@@ -29,7 +28,7 @@ https://data.bris.ac.uk/data/dataset/4vnrca7qw1642qlwxjadp87h7
 
 在文件夾`timm`下的`cowimg`裡放數據集，分成二個文件夾: `train/validate`，對應 訓練/驗證 數據文件夾；
 每個子文件夾下，依據分類類別每個類別建立一個對應的文件夾，放置該類別的圖片。
-另外test的部分在文件夾`timm`下的`testdata`裡放要當測試集的數據圖片。
+另外test的部分在文件夾`timm`下的`inference_test`裡放要當測試集的數據圖片。
 
 最終大概結構為：
 ```
@@ -52,62 +51,37 @@ https://data.bris.ac.uk/data/dataset/4vnrca7qw1642qlwxjadp87h7
 
 ### 部分重要配置參數說明
 
-針對`config.py`裡的部分重要參數說明如下：
+針對`train.py`裡的部分重要參數說明如下：
 
-- `--data`: 數據集根目錄，下面包含`train`, `test`, `val`三個目錄的數據集，默認當前文件夾下`data/`目錄；
-- `--image_size`: 輸入應該為兩個整數值，預訓練模型的輸入時正方形的，也就是[224, 224]之類的；
-實際可以根據自己需要更改，數據預處理時，會將圖像 等比例resize然後再padding（默認用0 padding）到 指定的輸入尺寸。
-- `--num_classes`: 分類模型的預測類別數；
-- `-b`: 設置batch size大小，默認為256，可根據GPU顯存設置；
-- `-j`: 設置數據加載的進程數，默認為8，可根據CPU使用量設置；
-- `--criterion`: 損失函數，一種使用PyTorch自帶的softmax損失函數，一種使用我自定義的sigmoid損失函數；
-sigmoid損失函數則是將多分類問題轉化為多標籤二分類問題，同時我增加了幾個如GHM自定義的sigmoid損失函數，
-可通過`--weighted_loss --ghm_loss --threshold_loss --ohm_loss`指定是否啟動；
-- `--lr`: 初始學習率，`main.py`裡我默認使用Adam優化器；目前學習率的scheduler我使用的是`LambdaLR`接口，自定義函數規則如下，
-詳細可參考`main.py`的`adjust_learning_rate(epoch, args)`函數：
-```
-~ warmup: 0.1
-~ warmup + int([1.5 * (epochs - warmup)]/4.0): 1, 
-~ warmup + int([2.5 * (epochs - warmup)]/4.0): 0.1
-~ warmup + int([3.5 * (epochs - warmup)]/4.0) 0.01
-~ epochs: 0.001
-```
-- `--warmup`: warmup的迭代次數，訓練前warmup個epoch會將 初始學習率*0.1 作為warmup期間的學習率；
+- `--model`: 可選擇調整當前想要訓練的模型類別；
+- `--image-size`: 輸入應該為兩個整數值，預訓練模型的輸入時正方形的，也就是[224,224]之類的；
+   實際可以根據自己需要更改，數據預處理時，會將圖像等比例resize然後再padding（默認用0 padding）到指定的輸入尺寸。
+- `--num-classes`: 分類模型的預測類別數；
+- `-b`: 設置batch size大小，可根據GPU顯存規格設置；
+- `--data_dir`: 設置訓練的資料集資料夾路徑；
+- `--dataset`: 設置訓練的資料集資料夾名稱；
+- `--initial-checkpoint`: 如果訓練有中斷或是想用其他的權重接著訓練可以參考設置；
 - `--epochs`: 訓練的總迭代次數；
-- `--aug`: 是否使用數據增強，目前默認使用的是自定義的數據增強方式：`dataloader/my_augment.py`；
-- `--mixup`: 數據增強mixup，默認 False；
-- `--multi_scale`: 多尺度訓練，默認 False；
-- `--resume`: 權重文件路徑，模型文件將被加載以進行模型初始化，`--jit`和`--evaluation`時需要指定；
-- `--jit`: 將模型轉為JIT格式，利於部署；
-- `--evaluation`: 在測試集上進行模型評估；
-- `--knowledge`: 指定數據集，使用教師模型（配合resume選型指定）對該數據集進行預測，獲取概率文件（知識)，
-生成的概率文件路徑為`data/distill.txt`，同時生成原始概率`data/label.txt`;
-- `--distill`: 模型蒸餾（需要教師模型輸出的概率文件)，默認 False，
-使用該模式訓練前，需要先啟用`--knowledge train --resume teacher.pth`對訓練集進行測試，生成概率文件作為教師模型的概率；
-概率文件形式為`data`路徑下`distill*.txt`模式的文件，有多個文件會都使用，取均值作為教師模型的概率輸出指導接下來訓練的學生模型；
-- `--visual_data`: 對指定數據集運行測試，並進行可視化；
-- `--visual_method`: 可視化方法，包含`cam`, `grad-cam`, `grad-camm++`三種；
-- `--make_curriculum`: 製作課程學習的課程文件；
-- `--curriculum_thresholds`: 不同課程中樣本的閾值；
-- `--curriculum_weights`: 不同課程中樣本的損失函數權重；
-- `--curriculum_learning`: 進行課程學習，從`data/curriculum.txt`中讀取樣本權重數據，訓練時給對應樣本的損失函數加權；
 
-參數的詳細說明可查看`config.py`文件。
+針對`validate.py`裡的部分重要參數說明如下：
+
+- `--model`: 需要調整和train的模型相同名稱；
+- `--data_dir`: 設置訓練的資料集資料夾路徑；
+- `--dataset`: 設置訓練的資料集資料夾名稱；
+- `--checkpointt`: 選擇訓練完想要拿來測試的權重檔案的路徑位置；
 
 ---
 ## Train
-1. 資料夾 `data` 由上述引導放置資料
-2. `config.py` 由上述引導設定 (重點data、arch、num_classes、train、epochs、warmup、evaluate、resume...)
-3. 運行`main.py` 開始訓練
+1. 資料夾 `pytorch-image-models-main` 下的 `train.py`檔案。
+2. `train.py` 由上述引導設定 (重點data、image-size、num_classes、train、epochs、batch_size...)
+3. 運行`train.py` 開始訓練
 
 ## Test  
-Method1:
-1. 若 `config.py --evaluate` 設定為 `True` 則會在訓練完畢後自動檢測 Test 資料夾內圖片
-2. 生成log檔也可重複觀看結果資料以及準確度
-3. 生成之 `ConfusionMatrix.png` 也可以確認測試資料之準確度  
 
-Method2:  
-可以使用 `demos` 目錄下的 `main.py` 測試圖片 (未測試)
+1. 運行`validate.py`，這裡的validate程式碼就是我們test的部分。
+2. 
+3.  
+
 
 ## Ensanble 
 1. 將三者模型測試出的結果 `.log` 檔運行 `write_csv.py` 將log檔轉換成讀取用的csv  
