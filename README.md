@@ -13,13 +13,19 @@ CNN模型雖然不像Transformer那麼複雜，但在特定情況下可能會有
 的選擇上，來考慮整體模型的精確度、速度和實際上應用需求的評估。
 
 ---
-## 預訓練與模型載點
-
-- `checkpoints` & `pretrained`: 目錄內 `Readme.md` 附有載點雲端；
+## (2)應用
+圖像分類是計算機視覺中最基礎的一個任務，即在多種類別圖像中分類出正確的類別，本次任務目的即在正確分類牛隻身分上，並優化實驗結果使其能接軌後續計畫，資料選擇上使用完整的乳牛後背俯視圖
+為主，模型架構方面除了先前的EfficientNet 外還加上了Resnet50和R50-ViT-B_16，並使用預訓練模型做遷移式學習以節省整體訓練時間。
 
 ---
 
-## 使用說明
+## (3)資料集鏈結
+University of Bristol Cows2021 Dataset (開放資料集)
+
+https://data.bris.ac.uk/data/dataset/4vnrca7qw1642qlwxjadp87h7
+
+
+
 
 ### 數據準備
 
