@@ -31,7 +31,7 @@ https://data.bris.ac.uk/data/dataset/4vnrca7qw1642qlwxjadp87h7
 
 最終大概結構為：
 ```
-- data
+- cowimg
   - train
     - class_0
       - 0.jpg
