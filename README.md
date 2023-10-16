@@ -40,7 +40,7 @@ https://data.bris.ac.uk/data/dataset/4vnrca7qw1642qlwxjadp87h7
     - class_1
       - ...
     - ..
-  - val
+  - validate
     - class_0
       - 0.jpg
       - 1.jpg
