@@ -70,43 +70,44 @@ https://data.bris.ac.uk/data/dataset/4vnrca7qw1642qlwxjadp87h7
 - `--checkpointt`: 選擇訓練完想要拿來測試的權重檔案的路徑位置；
 
 ---
-## Train
+### Train
 1. 資料夾 `pytorch-image-models-main` 下的 `train.py`檔案。
 2. `train.py` 由上述引導設定。(重點data、image-size、num_classes、train、epochs、batch_size...)
 3. 運行`train.py` 開始訓練。
 4. 這邊會將運行結果的權重檔案存放在文件夾`output`下的`train`。
 
-## Test  
+### Test  
 
 1. 運行`validate.py`，這裡的validate程式碼就是我們test的部分。
 2. 這邊會將運行結果存放在文件夾`output`下的`inference`。
 
+---
+### Result 
+- 實驗1 (Resnet50) 資料集訓練/驗證/測試分割為(7:1:2)
+![image](https://github.com/dannyFan-0201/NCHU_AI-Project_Sub_project-1/assets/47968782/6fc72645-3dc5-462d-8bf5-8bd43d226d06)
 
-## Ensanble 
+- 實驗2 (R50-ViT-B_16) 資料集訓練/驗證/測試分割為(7:1:2)
+![image](https://github.com/dannyFan-0201/NCHU_AI-Project_Sub_project-1/assets/47968782/cfa8da18-0c13-412e-a435-25c1c9b7f55b)
+
+- 實驗3 (Efficientnet_b4) 資料集訓練/驗證/測試分割為(7:1:2)
+![image](https://github.com/dannyFan-0201/NCHU_AI-Project_Sub_project-1/assets/47968782/36249a5d-9895-447d-8d04-d3688ee787d0)
+
+-各模型綜合參數比較表
+
+![image](https://github.com/dannyFan-0201/NCHU_AI-Project_Sub_project-1/assets/47968782/3c5241ea-cb47-48ad-8fb5-e3d51b788c9e)
 
 
 ---
-## Result (ConfusionMatrix)  
-- Model1 (efficientnet_b4_10) 資料為訓練資料分割5%
-![image](https://i.imgur.com/V2gEWRK.png)
+## (5) 感謝下列計畫的支持
+-(1) 計畫編號： MOST 110-2634-F-005-006
 
-- Model2 (efficientnet_b4_10+10) 資料為訓練資料分割5%
-![image](https://i.imgur.com/JYN1VSq.png)
-
-- Model3 (efficientnet_b5_20) 資料為訓練資料分割5%
-![image](https://i.imgur.com/mJy7MKb.png)
-
-- #失敗例子# (efficiennet_b6_10) 資料為訓練資料分割5%
-  - 未做資料增強 & 模型太大 Overfitting (少數類別準確率極低)
-![image](https://i.imgur.com/2Dtfd0O.png)
-
-
+-(2)計畫編號： NSTC 111-2634-F-005-001
 
 ---
+## (6)Reference
 
-## Reference
-
-[ilaydaDuratnir/python_image_enhancement](https://github.com/ilaydaDuratnir/python_image_enhancement)
+ Oquab, M., Bottou, L., Laptev, I., & Sivic, J. (2014). Learning and transferring mid-level image representations using convolutional neural networks. In Proceedings of the IEEE conference on computer vision and 
+ pattern recognition (pp. 1717-1724). 
 
 [zheng-yuwei/PyTorch-Image-Classification](https://github.com/zheng-yuwei/PyTorch-Image-Classification)
 
