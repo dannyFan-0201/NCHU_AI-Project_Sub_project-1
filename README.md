@@ -93,16 +93,16 @@ https://data.bris.ac.uk/data/dataset/4vnrca7qw1642qlwxjadp87h7
 - 實驗3 (Efficientnet_b4) 資料集訓練/驗證/測試分割為(7:1:2)
 ![image](https://github.com/dannyFan-0201/NCHU_AI-Project_Sub_project-1/assets/47968782/36249a5d-9895-447d-8d04-d3688ee787d0)
 
--各模型綜合參數比較表
+- 各模型綜合參數比較表
 
 ![image](https://github.com/dannyFan-0201/NCHU_AI-Project_Sub_project-1/assets/47968782/3c5241ea-cb47-48ad-8fb5-e3d51b788c9e)
 
 
 ---
 ## (5) 感謝下列計畫的支持
--(1) 計畫編號： MOST 110-2634-F-005-006
+- (1) 計畫編號： MOST 110-2634-F-005-006
 
--(2)計畫編號： NSTC 111-2634-F-005-001
+- (2)計畫編號： NSTC 111-2634-F-005-001
 
 ---
 ## (6)Reference
