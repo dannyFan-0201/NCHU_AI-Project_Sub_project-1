@@ -25,7 +25,7 @@ https://data.bris.ac.uk/data/dataset/4vnrca7qw1642qlwxjadp87h7
 ---
 ## (4)程式碼
 
-在文件夾`timm`下的`cowimg`裡放數據集，分成二個文件夾: `train/validate`，對應 訓練/驗證 數據文件夾,每個子文件夾下再依據分類的類別，每個類別建立一個對應的文件夾放置該類別的圖片。
+在文件夾`timm`(為壓縮檔要先解壓縮)下的`cowimg`裡放數據集，分成二個文件夾: `train/validate`，對應 訓練/驗證 數據文件夾,每個子文件夾下再依據分類的類別，每個類別建立一個對應的文件夾放置該類別的圖片。
 
 另外test的部分在文件夾`timm`下的`inference_test`裡放要當測試集的數據圖片。
 
@@ -71,7 +71,7 @@ https://data.bris.ac.uk/data/dataset/4vnrca7qw1642qlwxjadp87h7
 
 ---
 ### Train
-1. 資料夾 `pytorch-image-models-main` 下的 `train.py`檔案。
+1. 主資料夾下的 `train.py`檔案。
 2. `train.py` 由上述引導設定。(重點data、image-size、num_classes、train、epochs、batch_size...)
 3. 運行`train.py` 開始訓練。
 4. 如需變換訓練模型只需要調整`--model`內的模型名稱即可。
