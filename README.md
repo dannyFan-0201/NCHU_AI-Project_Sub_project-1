@@ -106,19 +106,21 @@ https://data.bris.ac.uk/data/dataset/4vnrca7qw1642qlwxjadp87h7
 ---
 ## (6)Reference
 
- Oquab, M., Bottou, L., Laptev, I., & Sivic, J. (2014). Learning and transferring mid-level image representations using convolutional neural networks. In Proceedings of the IEEE conference on computer vision and 
- pattern recognition (pp. 1717-1724). 
+ [Oquab, M., Bottou, L., Laptev, I., & Sivic, J. (2014). Learning and transferring mid-level image representations using convolutional neural networks. In Proceedings of the IEEE conference on computer vision 
+ and pattern recognition (pp. 1717-1724). ](https://ieeexplore.ieee.org/document/6909618)
 
-[zheng-yuwei/PyTorch-Image-Classification](https://github.com/zheng-yuwei/PyTorch-Image-Classification)
+[Tan, M., and Le, Q. (2019 May). Efficientnet: Rethinking model scaling for convolutional neural networks. In International conference on machine learning, PMLR (pp. 6105-6114).](https://proceedings.mlr.press/v97/tan19a/tan19a.pdf)
 
-[d-li14/mobilenetv3.pytorch](https://github.com/d-li14/mobilenetv3.pytorch)
+[Deng, J., Dong, W., Socher, R., Li, L. J., Li, K., & Fei-Fei, L. (2009, June). Imagenet: A large-scale hierarchical image database. In IEEE conference on computer vision and pattern recognition (pp. 248-255).](https://ieeexplore.ieee.org/document/5206848)
 
-[lukemelas/EfficientNet-PyTorch](https://github.com/lukemelas/EfficientNet-PyTorch)
+( https://data.bris.ac.uk/data/dataset/4vnrca7qw1642qlwxjadp87h7)
 
-[zhanghang1989/ResNeSt](https://github.com/zhanghang1989/ResNeSt)
+(https://ithelp.ithome.com.tw/m/articles/10264843)
 
-[yizt/Grad-CAM.pytorch](https://github.com/yizt/Grad-CAM.pytorch)
+(https://zhuanlan.zhihu.com/p/464920124)
+
+(https://github.com/rwightman/pytorch-image-models)
 
 ---
 ## Contact
-If you have any question, feel free to contact wiwi61666166@gmail.com
+If you have any question, feel free to contact danny80351@gmail.com
