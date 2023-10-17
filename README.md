@@ -74,7 +74,8 @@ https://data.bris.ac.uk/data/dataset/4vnrca7qw1642qlwxjadp87h7
 1. 資料夾 `pytorch-image-models-main` 下的 `train.py`檔案。
 2. `train.py` 由上述引導設定。(重點data、image-size、num_classes、train、epochs、batch_size...)
 3. 運行`train.py` 開始訓練。
-4. 這邊會將運行結果的權重檔案存放在文件夾`output`下的`train`。
+4. 如需變換訓練模型只需要調整`--model`內的模型名稱即可。
+5. 這邊會將運行結果的權重檔案存放在文件夾`output`下的`train`。
 
 ### Test  
 
